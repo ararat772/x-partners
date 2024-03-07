@@ -1,0 +1,46 @@
+version: '3'
+services:
+  test-api-php:
+    container_name: test-api-php
+    hostname: test-api-php
+    restart: unless-stopped
+    build:
+      context: ./
+    volumes:
+      - .:/var/www/html
+    networks:
+      - test-api-network
+    depends_on:
+      - test-api-postgres
+
+  test-api-nginx:
+    image: nginx:1.23.1-alpine
+    container_name: test-api-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9090:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/:/etc/nginx/conf.d/
+    networks:
+      - test-api-network
+
+  test-api-postgres:
+    image: postgres:14.4-alpine
+    container_name: test-api-postgres
+    restart: unless-stopped
+    ports:
+      - "5438:5432"
+    networks:
+      - test-api-network
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: test
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    hostname: test-api-postgres
+
+networks:
+  test-api-network:
+    driver: bridge

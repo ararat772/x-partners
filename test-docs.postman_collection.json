@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "4cd6e553-4ba0-4aa3-b5f6-6ac7c80aeb8c",
+		"name": "test-docs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21187916",
+		"_collection_link": "https://brovisor-184181.postman.co/workspace/Team-Workspace~67d3f83a-6546-4f5a-8720-45fbd0f51cf3/collection/21187916-4cd6e553-4ba0-4aa3-b5f6-6ac7c80aeb8c?action=share&creator=21187916&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "pay for payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/payment/pay/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"payment",
+						"pay",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calcPrice",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;"
+					},
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Linux\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product\": \"10\",\n    \"taxNumber\": \"FRAD555555555\",\n    \"couponCode\": \"D15\",\n    \"paymentProcessor\": \"stripe\"\n}   "
+				},
+				"url": {
+					"raw": "http://localhost:9090/product/calcPrice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"product",
+						"calcPrice"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
