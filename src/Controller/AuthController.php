@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 
 class AuthController extends AbstractController
 {
@@ -28,35 +27,6 @@ class AuthController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/register",
-     *     summary="Register a new user",
-     *     @OA\RequestBody(
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="email", type="string"),
-     *             @OA\Property(property="password", type="string")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="User registered successfully",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="message", type="string")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="Registration failed",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="error", type="string")
-     *         )
-     *     )
-     * )
-     */
     public function register(Request $request): JsonResponse
     {
         try {
